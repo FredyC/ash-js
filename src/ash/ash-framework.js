@@ -5,7 +5,7 @@
  */
 define(function (require) {
     var core = {
-        VERSION: '0.2.0'
+        VERSION: '0.2.1'
     };
 
     core.Engine = require('ash-core/engine');

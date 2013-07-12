@@ -301,6 +301,21 @@ define ([
         ok( testNodeOrder( nodes, [node1, node2, node3, node4, node5] ) );
     });
 
+    test('loop through all nodes using forEach method', function() {
+        var node1 = new MockNode(1),
+            node2 = new MockNode(2),
+            node3 = new MockNode(3);
+        nodes.add( node1 );
+        nodes.add( node2 );
+        nodes.add( node3 );
+        var result = [];
+        nodes.forEach( function(node, i) {
+            ok( node.point.x - 1 == i );
+            result.push( node.point.x );
+        });
+        ok( result.length == 3 );
+    });
+
     function sortFunction( node1, node2 ) {
         // sort based on x value
         return node1.point.x - node2.point.x;

@@ -14,7 +14,7 @@ define([
             this.nodeAdded = new signals.Signal();
             this.nodeRemoved = new signals.Signal();
         },
-        
+
         add: function( node ) {
             if( !this.head ) {
                 this.head = this.tail = node;
@@ -25,7 +25,7 @@ define([
             }
             this.nodeAdded.dispatch( node );
         },
-        
+
         remove: function( node ) {
             if( this.head == node ) {
                 this.head = this.head.next;
@@ -41,7 +41,7 @@ define([
             }
             this.nodeRemoved.dispatch( node );
         },
-        
+
         removeAll: function() {
             while( this.head ) {
                 var node = this.head;
@@ -52,11 +52,11 @@ define([
             }
             this.tail = null;
         },
-        
+
         empty: function() {
             return this.head === null;
         },
-        
+
         swap: function( node1, node2 ) {
             if( node1.previous == node2 ) {
                 node1.previous = node2.previous;
@@ -99,7 +99,7 @@ define([
                 node2.next.previous = node2;
             }
         },
-        
+
         insertionSort: function( sortFunction ) {
             if( this.head == this.tail ) {
                 return;
@@ -140,7 +140,7 @@ define([
                 }
             }
         },
-        
+
         mergeSort: function( sortFunction ) {
             if( this.head == this.tail ) {
                 return;
@@ -166,7 +166,7 @@ define([
                 this.tail = this.tail.next;
             }
         },
-        
+
         merge: function( head1, head2, sortFunction ) {
             var node,
                 head;
@@ -198,6 +198,14 @@ define([
                 head2.previous = node;
             }
             return head;
+        },
+
+        forEach: function( callback ) {
+            if (this.head) {
+                for ( var node = this.head, i = 0; node; node = node.next, i++ ) {
+                    callback.call( callback, node, i );
+                }
+            }
         }
     });
 

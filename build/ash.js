@@ -994,7 +994,7 @@ define('ash-core/nodelist',[
             this.nodeAdded = new signals.Signal();
             this.nodeRemoved = new signals.Signal();
         },
-        
+
         add: function( node ) {
             if( !this.head ) {
                 this.head = this.tail = node;
@@ -1005,7 +1005,7 @@ define('ash-core/nodelist',[
             }
             this.nodeAdded.dispatch( node );
         },
-        
+
         remove: function( node ) {
             if( this.head == node ) {
                 this.head = this.head.next;
@@ -1021,7 +1021,7 @@ define('ash-core/nodelist',[
             }
             this.nodeRemoved.dispatch( node );
         },
-        
+
         removeAll: function() {
             while( this.head ) {
                 var node = this.head;
@@ -1032,11 +1032,11 @@ define('ash-core/nodelist',[
             }
             this.tail = null;
         },
-        
+
         empty: function() {
             return this.head === null;
         },
-        
+
         swap: function( node1, node2 ) {
             if( node1.previous == node2 ) {
                 node1.previous = node2.previous;
@@ -1079,7 +1079,7 @@ define('ash-core/nodelist',[
                 node2.next.previous = node2;
             }
         },
-        
+
         insertionSort: function( sortFunction ) {
             if( this.head == this.tail ) {
                 return;
@@ -1120,7 +1120,7 @@ define('ash-core/nodelist',[
                 }
             }
         },
-        
+
         mergeSort: function( sortFunction ) {
             if( this.head == this.tail ) {
                 return;
@@ -1146,7 +1146,7 @@ define('ash-core/nodelist',[
                 this.tail = this.tail.next;
             }
         },
-        
+
         merge: function( head1, head2, sortFunction ) {
             var node,
                 head;
@@ -1178,6 +1178,14 @@ define('ash-core/nodelist',[
                 head2.previous = node;
             }
             return head;
+        },
+
+        forEach: function( callback ) {
+            if (this.head) {
+                for ( var node = this.head, i = 0; node; node = node.next, i++ ) {
+                    callback.call( callback, node, i );
+                }
+            }
         }
     });
 
@@ -1850,7 +1858,7 @@ define('ash-core/system',[
  */
 define('ash/ash-framework',['require','ash-core/engine','ash-core/componentmatchingfamily','ash-core/entity','ash-core/entitylist','ash-core/family','ash-core/node','ash-core/nodelist','ash-core/nodepool','ash-core/system','ash-core/systemlist','brejep/class','signals'],function (require) {
     var core = {
-        VERSION: '0.2.0'
+        VERSION: '0.2.1'
     };
 
     core.Engine = require('ash-core/engine');
